@@ -42,7 +42,7 @@ paths:
               CreatedAt: "2017-02-08T15:47:08"
     post:
       summary: "New Topics could be created using this methode."
-      description: "Used to create new Topics"
+      description: "Used to create a new topics"
       operationId: "Topics_Post"
       consumes:
       - "application/json"
@@ -57,10 +57,10 @@ paths:
       - "text/xml"
       parameters:
       - in: "body"
-        name: "EAI_Topics"
+        name: "EAI_Topic"
         required: true
         schema:
-          $ref: "#/definitions/EAI_TopicsArray"
+          $ref: "#/definitions/EAI_Topics"
       responses:
         200:
           description: "OK"
@@ -176,10 +176,10 @@ paths:
       - "text/xml"
       parameters:
       - in: "body"
-        name: "EAI_SupportRequests"
+        name: "EAI_SupportRequest"
         required: true
         schema:
-          $ref: "#/definitions/EAI_SupportRequestsArray"
+          $ref: "#/definitions/EAI_SupportRequests"
       responses:
         200:
           description: "OK"
