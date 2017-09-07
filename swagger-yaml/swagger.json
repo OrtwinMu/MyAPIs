@@ -1,0 +1,301 @@
+---
+swagger: "2.0"
+info:
+  description: "Sample API to get records from EAI Sampless database (hosted OnPremise)"
+  version: "1.0"
+  title: "SampleAPI"
+host: "pocsampleapi.azurewebsites.net"
+schemes:
+- "https"
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+paths:
+  /api/Topics:
+    get:
+      summary: "Get all topics listed where support request could be created."
+      description: "Get all topics from EAI Samples Database"
+      operationId: "Topics_Get"
+      produces:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/EAI_TopicsArray"
+          examples:
+            application/json:
+            - EAI_Topics: null
+              ID: 1
+              Name: "Sample Topic A"
+              ContactPerson: "omuetze@munichre.com"
+              CreatedAt: "2017-02-08T15:47:08"
+            - EAI_Topics: null
+              ID: 2
+              Name: "Sample Topic B"
+              ContactPerson: "omuetze@munichre.com"
+              CreatedAt: "2017-02-08T15:47:08"
+    post:
+      summary: "New Topics could be created using this methode."
+      description: "Used to create new Topics"
+      operationId: "Topics_Post"
+      consumes:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      parameters:
+      - in: "body"
+        name: "EAI_Topics"
+        required: true
+        schema:
+          $ref: "#/definitions/EAI_TopicsArray"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/EAI_Topics"
+  /api/Topics/{id}:
+    get:
+      summary: "Use this methode to get a topics based on the id."
+      description: "Get a specific topic with topic ID"
+      operationId: "Topics_GetByID"
+      produces:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Format - int32."
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/EAI_Topics"
+          examples:
+            application/json:
+              ID: 1
+              Name: "Sample Topic A"
+              ContactPerson: "omuetze@munichre.com"
+              CreatedAt: "2017-02-08T15:47:08"
+    put:
+      summary: "Use this methode to update existing topics."
+      description: "Updates a topic by id"
+      operationId: "Topics_Put_ByID"
+      consumes:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      - "application/x-www-form-urlencoded"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Format - int32."
+        required: true
+        type: "integer"
+      - in: "body"
+        name: "EAI_Topic"
+        required: true
+        schema:
+          $ref: "#/definitions/EAI_Topics"
+      responses:
+        204:
+          description: "No Content"
+    delete:
+      summary: "Use this methode to delete an existing topic."
+      description: "Deletes a topic"
+      operationId: "Topics_Delete_ByID"
+      produces:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Format - int32."
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/EAI_Topics"
+  /api/SupportRequests:
+    get:
+      summary: "This methode will return a lsit of existing Support Requests."
+      description: "Gets all Support Request from EAI Samples Database"
+      operationId: "SupportRequests_Get"
+      produces:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/EAI_SupportRequestsArray"
+          examples:
+            application/json:
+              ID: 1
+              Name: "Microsoft Azure A"
+              ContactPerson: "omuetze@munichre.com"
+              CreatedAt: "2017-04-08T07:46:10"
+    post:
+      summary: "Use this methode to post new support requests."
+      description: "Used to create Support Requests."
+      operationId: "SupportRequests_Post"
+      consumes:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      parameters:
+      - in: "body"
+        name: "EAI_SupportRequests"
+        required: true
+        schema:
+          $ref: "#/definitions/EAI_SupportRequestsArray"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/EAI_SupportRequests"
+  /api/SupportRequests/{id}:
+    get:
+      summary: "Use this methode to get a support request by id."
+      description: "Gets a support request by id"
+      operationId: "SupportRequests_GetByID"
+      produces:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Format - int32."
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/EAI_SupportRequests"
+    put:
+      summary: "Use this methode to update an existing support request by id."
+      description: "Updates a support request"
+      operationId: "SupportRequests_Put"
+      consumes:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      - "application/x-www-form-urlencoded"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Format - int32."
+        required: true
+        type: "integer"
+      - in: "body"
+        name: "EAI_SupportRequest"
+        required: true
+        schema:
+          $ref: "#/definitions/EAI_SupportRequests"
+      responses:
+        204:
+          description: "No Content"
+    delete:
+      summary: "Use this mthode to delte an existing support request."
+      description: "Deletes a support request"
+      operationId: "SupportRequests_Delete"
+      produces:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Format - int32."
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/EAI_SupportRequests"
+securityDefinitions:
+  apiKeyHeader:
+    type: "apiKey"
+    name: "Ocp-Apim-Subscription-Key"
+    in: "header"
+  apiKeyQuery:
+    type: "apiKey"
+    name: "subscription-key"
+    in: "query"
+definitions:
+  EAI_SupportRequests:
+    type: "object"
+    properties:
+      ID:
+        type: "integer"
+        format: "int32"
+      TopicID:
+        type: "integer"
+        format: "int32"
+      Request:
+        type: "string"
+      RequestedAt:
+        type: "string"
+        format: "date-time"
+      Requestor:
+        type: "string"
+      RequestID:
+        type: "string"
+  EAI_Topics:
+    type: "object"
+    properties:
+      ID:
+        type: "integer"
+        format: "int32"
+      Name:
+        type: "string"
+      ContactPerson:
+        type: "string"
+      CreatedAt:
+        type: "string"
+        format: "date-time"
+  EAI_SupportRequestsArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/EAI_SupportRequests"
+  EAI_TopicsArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/EAI_Topics"
+x-azure-api-id: "597703a7ea57005d6b299c08"
